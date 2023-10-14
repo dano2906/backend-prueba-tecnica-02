@@ -1,5 +1,7 @@
+import { createRequire } from "node:module";
+const require = createRequire(import.meta.url)
+const products = require('../db/products.json')
 
-import products from "../db/products.json" assert { type: "json" }
 export class ProductModel {
     static async getAllProducts() {
         const {products: data} = products;
