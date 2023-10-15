@@ -6,6 +6,17 @@ import {router as productRouter} from "./routes/product.routes.js"
 
 const app = express();
 
+const whitelist = ['http://localhost:4321', 'https://02-bazar-universal.netlify.app']
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+
 app.set('PORT',2345);
 app.use(json());
 app.use(cors());
